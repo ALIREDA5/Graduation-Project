@@ -9,10 +9,6 @@
 #ifndef LIMIT SWITCH_H_
 #define LIMIT SWITCH_H_
 
-/*----------------- Libraries and Definitions ------------*/
-
-#include "../MCAL/DIO/DIO.h"
-
 /*--------------------- Functions Prototypes ---------------------------*/
 
 uint8 LS_Read(uint8 p);
