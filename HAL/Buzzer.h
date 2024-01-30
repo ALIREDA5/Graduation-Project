@@ -9,10 +9,6 @@
 #ifndef BUZZER_H_
 #define BUZZER_H_
 
-		/*----------------- Libraries and Definitions ------------*/
-
-#include "../MCAL/DIO/DIO.h"
-
 #define  buzzer 14
 		/*--------------------- Functions Prototypes ---------------------------*/
 
