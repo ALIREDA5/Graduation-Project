@@ -5,7 +5,7 @@
  *  Author: Ali Reda
  */ 
 		/*----------------- Libraries and Definitions ------------*/
-
+#include "DIO.h"
 #include "Buzzer.h"
 
 		/*------------------------- Function Definitions -----------------------------*/
