@@ -5,9 +5,6 @@
 #define TIM1_NOISE_DIACTIVATE              0
 #define TIM1_NOISE_ACTIVATE                1
 
-#define TIM1_ICU_FALLINGEDGE               0
-#define TIM1_ICU_RISINGEDGE                1
-
 #define TIM1_NORMAL                        0
 #define TIM1_PWM_8                         1
 #define TIM1_PWM_9                         2
