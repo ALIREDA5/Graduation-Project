@@ -29,7 +29,6 @@
 void LCD_vidInit(void);
 void LCD_vidSendCmd(uint8 u8LcdNumCpy , uint8 u8CmdCpy);
 void LCD_vidWriteData(uint8 u8LcdNumCpy , uint8 u8DataCpy);
-void LCD_vidWriteStr(uint8 u8LcdNumCpy , uint8* u8StrCpy);
-void LCD_WriteSentence(uint8 u8LcdNumCpy ,uint8 *str);
+void LCD_vidWriteString(uint8 u8LcdNumCpy , sint8* u8StringCpy);
 
 #endif
