@@ -1,6 +1,8 @@
 #ifndef TIM0_H
 #define TIM0_H
 
+#define TIM1_ICU_FALLINGEDGE               0
+#define TIM1_ICU_RISINGEDGE                1
 
 void TIM1_vidInit(void) ;
 
