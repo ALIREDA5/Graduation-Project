@@ -5,6 +5,7 @@
  *  Author: Ali Reda
  */ 
 		/*----------------- Libraries and Definitions ------------*/
+#include "STD_Types.h"
 #include "DIO.h"
 #include "Buzzer.h"
 
