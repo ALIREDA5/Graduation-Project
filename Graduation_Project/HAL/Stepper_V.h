@@ -9,6 +9,13 @@
 #ifndef STEPPER_V_H_
 #define STEPPER_V_H_
 
+#define DMODE0  0
+#define DMODE1  1
+#define DMODE2  2
+#define DIR    3
+#define ENAPLE  5
+#define CLKINPUT 6
+
 typedef enum
 {
 	up=0,

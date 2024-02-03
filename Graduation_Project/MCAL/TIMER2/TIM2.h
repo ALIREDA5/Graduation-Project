@@ -1,6 +1,7 @@
 #ifndef TIM2_H
 #define TIM2_H
 
+#include "../../Lib/STD_Types.h"
 
 void TIM2_vidInit(void) ;
 

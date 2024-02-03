@@ -8,7 +8,18 @@
 pf TIM0_pfOvfFun ;
 pf TIM0_pfCmpFun ;
 static uint8 Cset=0;
-volatile void (*fp_oc)(void)=NULL;
+void (*fp_oc)(void)=NULL;
+
+void fun_oc()
+{
+	static uint8 c=0;
+	c++;
+	if (c==Cset)
+	{
+		fp_oc();
+		c=0;
+	}
+}
 
 void TIM0_vidInit(void) 
 {
@@ -105,13 +116,3 @@ void __vector_10 (void)
 	TIM0_pfCmpFun();
 }
 
-void fun_oc()
-{
-	static c=0;
-	c++;
-	if (c==Cset)
-	{
-		fp_oc();
-		c=0;
-	}
-}

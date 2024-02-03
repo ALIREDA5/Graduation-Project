@@ -35,10 +35,10 @@ void StepperH_ON(direction d)
 		break;
 	}
 	DIO_enuSetPinValue(enable,1);
-	for (uint8 i=0; i<(200); i++)
-	{
-		TIM0_vidSetCallBackCmp(tog);
-	}
+	
+	TIM0_vidInit();
+	// // connect step pin to OCR0
+	
 }
 
 	/*------------------------- Function Definition Of stepper motor to turn it off-----------------------------*/
