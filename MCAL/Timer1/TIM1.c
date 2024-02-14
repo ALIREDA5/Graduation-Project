@@ -119,11 +119,11 @@ void TIM1_vidChgICUMod(uint8 u8ModeCpy)
 {
 	if(u8ModeCpy == TIM1_ICU_FALLINGEDGE)
 	{
-		SET_BIT(TCCR1B , 6);
+		CLR_BIT(TCCR1B , 6);
 	}
 	else if(u8ModeCpy == TIM1_ICU_RISINGEDGE)
 	{
-		CLR_BIT(TCCR1B , 5);
+		SET_BIT(TCCR1B , 6);
 	}
 }
 
