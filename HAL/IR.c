@@ -22,5 +22,5 @@ static uint8 IRreadVlue;
 uint8 IR_ReadPinValue(void)
 {
 	DIO_enuReadPinValue(IRPin , &IRreadVlue);
-	return IRreadVlue;
+	return !IRreadVlue;
 }	
