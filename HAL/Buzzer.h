@@ -10,6 +10,7 @@
 #define BUZZER_H_
 
 #define  buzzer 14
+//Buzzer is connected to 5V & 1000 ohm
 		/*--------------------- Functions Prototypes ---------------------------*/
 
 void Buzzer_on();
