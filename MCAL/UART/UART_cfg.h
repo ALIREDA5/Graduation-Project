@@ -1,16 +1,37 @@
-#ifndef SPI_CFG_H
-#define SPI_CFG_H
+#ifndef USART_CFG_H
+#define USART_CFG_H
 
-#define SPI_DATA_ORDER       SPI_LSB_FIRST
+#define FOSC                                           8000000UL
 
-#define SPI_MODE             SPI_MASTER
+#define USART_BAUD_RATE                                USART_BAUD_9600
 
-#define SPI_CLK_IDLE_STATE   SPI_CLK_LOW
+#define USART_MULTI_PROCESSOR_COMMUNICATION_MODE       USART_DISABLE
 
-#define SPI_PHASE            SPI_SETUP_LEAD
+#define USART_TRANSMISSION_SPEED                       USART_1X          //This bit only has effect for the asynchronous 
 
-#if SPI_MODE    ==   SPI_MASTER
-#define SPI_PRESCALLER    SPI_DIV_8
+#define USART_MODE                                     USART_ASYNCHRONOUS
+
+#define USART_PARITY_MODE                              USART_DISABLE
+
+#define USART_STOP_BIT_SELECT                          USART_STOP_BIT_1
+
+#define USART_DATA_SIZE                                USART_DATA_SIZE_8_BIT
+
+#define USART_CLOCK_POLARITY                           USART_XCK_RISING_TX_XCH_FALLING_RX
+
+
+
+/************************/
+#if ((USART_MODE    ==   USART_ASYNCHRONOUS) && (USART_TRANSMISSION_SPEED == USART_1X))
+#define USART_MY_BAUD_RATE       (((FOSC/(USART_BAUD_RATE * 16UL)))-1)
+
+#elif ((USART_MODE    ==   USART_ASYNCHRONOUS) && (USART_TRANSMISSION_SPEED == USART_2X))
+#define USART_MY_BAUD_RATE       (((FOSC/(USART_BAUD_RATE * 8)))-1)
+
+#elif ((USART_MODE    ==   USART_SYNCHRONOUS) && (USART_TRANSMISSION_SPEED == USART_1X))
+#define USART_MY_BAUD_RATE       (((FOSC/(USART_BAUD_RATE * 2)))-1)
+
 #endif
+
 
 #endif
