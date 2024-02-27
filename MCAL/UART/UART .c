@@ -1,95 +1,150 @@
-/*
- * SPI.c
- *
- *  Created on: Oct 21, 2023
- *      Author: ASUS
- */
 #include "STD_Types.h"
 #include "BIT_MATH.h"
 
-#include "SPI.h"
-#include "SPI_cfg.h"
-#include "SPI_priv.h"
+#include "USART.h"
+#include "USART_cfg.h"
+#include "USART_priv.h"
 
 
-pf SPI_pfCallFunc ;
+pf USART_pfRxFunc ;
+pf USART_pfTxFunc ;
+pf USART_pfUDRFunc ;
 
 
-void SPI_vidInit(void)
+void USART_vidInit(void)
 {
-	uint8 u8SpcrLoc =0b01000000,u8SpsrLoc = 0 ;
-	u8SpcrLoc |= SPI_DATA_ORDER << 5 ;
-	u8SpcrLoc |= SPI_MODE << 4 ;
-	u8SpcrLoc |= SPI_CLK_IDLE_STATE << 3 ;
-	u8SpcrLoc |= SPI_PHASE << 2;
-#if SPI_MODE == SPI_MASTER
-	u8SpcrLoc |= (SPI_PRESCALLER & 0b00000011);
-	u8SpsrLoc |= (SPI_PRESCALLER & 0b00000100)>>2;
-#endif
-	SPSR = u8SpsrLoc;
-	SPCR = u8SpcrLoc ;
+	uint8 u8UCSRCLoc =0b10000000;
+	u8UCSRCLoc |= USART_MODE << 6 ;
+	u8UCSRCLoc |= USART_PARITY_MODE << 4 ;
+	u8UCSRCLoc |= USART_STOP_BIT_SELECT << 3 ;
+	u8UCSRCLoc |= (USART_DATA_SIZE & 0b00000011) << 1;
+	u8UCSRCLoc |= USART_CLOCK_POLARITY;
+
+	UCSRC = u8UCSRCLoc ;
+	UCSRB |= (0b00011000 | (USART_DATA_SIZE & 0b00000100));
+	UCSRA |= (USART_TRANSMISSION_SPEED << 1);
+	UCSRA |=  USART_MULTI_PROCESSOR_COMMUNICATION_MODE;
+
+	CLR_BIT(UBRRH,7);
+	UBRRL = USART_MY_BAUD_RATE;                //16 BIT
+	UBRRH = ((USART_MY_BAUD_RATE) >> 8);
+
 }
 
-void SPI_vidEnable(void)
+void USART_vidEnable(void)
 {
-	SET_BIT(SPCR,6);
+	SET_BIT(UCSRB,3);
+	SET_BIT(UCSRB,4);
 }
-void SPI_vidDisable(void)
+void USART_vidDisable(void)
 {
-	CLR_BIT(SPCR,6);
-}
-
-void SPI_vidEnableInt(void)
-{
-	SET_BIT(SPCR,7);
-}
-void SPI_vidDisableInt(void)
-{
-	CLR_BIT(SPCR,7);
+	CLR_BIT(UCSRB,3);
+	CLR_BIT(UCSRB,4);
 }
 
-void SPI_vidSetCallBack(pf pfCallFuncCpy)
+void USART_vidEnable_Receiver(void)
 {
-	SPI_pfCallFunc = pfCallFuncCpy ;
+	SET_BIT(UCSRB,4);
 }
 
-uint8 SPI_u8GetMode(void)
+void USART_vidDisable_Receiver(void)
 {
-	return GET_BIT(SPCR , 4);
+	CLR_BIT(UCSRB,4);
 }
-void SPI_vidChgMode(uint8 u8ModeCpy)
+void USART_vidEnable_Transmitter(void)
 {
-	if(u8ModeCpy == SPI_MASTER)
+	SET_BIT(UCSRB,3);
+}
+void USART_vidDisable_Transmitter(void)
+{
+	CLR_BIT(UCSRB,3);
+}
+
+void USART_vidEnable_RX_Int(void)
+{
+	SET_BIT(UCSRB,7);
+}
+void USART_vidDisable_RX_Int(void)
+{
+	CLR_BIT(UCSRB,7);
+}
+
+void USART_vidEnable_TX_Int(void)
+{
+	SET_BIT(UCSRB,6);
+}
+void USART_vidDisable_TX_Int(void)
+{
+	CLR_BIT(UCSRB,6);
+}
+
+void USART_vidEnable_UDR_Int(void)
+{
+	SET_BIT(UCSRB,5);
+}
+void USART_vidDisable_UDR_Int(void)
+{
+	CLR_BIT(UCSRB,5);
+}
+
+void USART_vidSetCallBack_Rx(pf pfCallFuncRxCpy)
+{
+	USART_pfRxFunc = pfCallFuncRxCpy ;
+}
+
+void USART_vidSetCallBack_Tx(pf pfCallFuncTxCpy)
+{
+	USART_pfTxFunc = pfCallFuncTxCpy ;
+}
+
+void USART_vidSetCallBack_UDR(pf pfCallFuncUDRCpy)
+{
+	USART_pfUDRFunc = pfCallFuncUDRCpy ;
+}
+
+void USART_Transmit(uint8 data) 
+{
+	// Wait for empty transmit buffer
+	while (!(UCSRA & (1 << 5)));
+
+	// Put data into buffer and send
+	UDR = data;
+}
+
+void USART_TransmitString(uint8* data)
+{
+	// Wait for empty transmit buffer
+	while (*data != '\0')		/* Send string till null */
 	{
-		SET_BIT(SPCR , 4);
-	}
-	else
-	{
-		CLR_BIT(SPCR , 4);
+		USART_Transmit(*data);
+		data++;
 	}
 }
 
-uint8 SPI_u8Transmit(uint8 u8DataCpy)
+uint8 USART_Receive(void) 
 {
-	SPDR = u8DataCpy;
-	while(GET_BIT(SPSR,7) != 1);
-	return SPDR ;
-}
+	// Wait for data to be received
+	while (!(UCSRA & (1 << 7)));
 
-void SPI_vidSendData(uint8 u8DataCpy)
-{
-	SPDR = u8DataCpy;
-}
-uint8 SPI_u8RecvData(void)
-{
-	return SPDR ;
-}
-
-void __vector_12 (void) __attribute__((signal,used));
-void __vector_12 (void)
-{
-	SPI_pfCallFunc();
+	// Return received data
+	return UDR;
 }
 
 
+void __vector_13 (void) __attribute__((signal,used));
+void __vector_13 (void)
+{
+	USART_pfRxFunc();
+}
 
+void __vector_14 (void) __attribute__((signal,used));
+void __vector_14 (void)
+{
+	USART_pfUDRFunc();
+}
+
+void __vector_15 (void) __attribute__((signal,used));
+void __vector_15 (void)
+{
+	USART_pfTxFunc();
+}
