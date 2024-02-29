@@ -1,23 +1,19 @@
-/*
- * LDR.c
- *
- * Created: 10/29/2023 1:02:15 AM
- *  Author: Ali Reda
- */ 
+
 
 		/*----------------- Libraries and Definitions ------------*/
-
+#include "STD_Types.h"
+#include "ADC.h"
 #include "LDR.h"
 		
 		/*--------------------- Global Variables ------------------*/
 
-static uint8 x;
+static uint16 u16LDR_ReadValue;
 
 		/*--------------------------- Function to return the percentage of max light intensity ----------------------------------*/
 
-uint8 LDR_Read(uint8 cha)
+uint8 LDR_Read(void)
 {
-	x= ADC_u16ReadSync(cha);
-	x= ((uint16)x*100)/1024;
-	return x;  
+	u16LDR_ReadValue= ADC_u16ReadSync();
+	u16LDR_ReadValue= ((uint32)u16LDR_ReadValue*5000)/1024;
+	return u16LDR_ReadValue;  
 }
