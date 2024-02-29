@@ -9,12 +9,9 @@
 #ifndef IR SENSOR_H_
 #define IR SENSOR_H_
 
-		/*----------------- Libraries and Definitions ------------*/
-
-#include "../MCAL/DIO.h"
-
 		/*--------------------- Functions Prototypes ---------------------------*/
-
-uint8 IR_Read(uint8 p);
+#define IRPin 0
+		
+uint8 IR_ReadPinValue(void);
 
 #endif /* IR SENSOR_H_ */
