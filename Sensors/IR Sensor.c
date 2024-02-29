@@ -6,11 +6,12 @@
  */ 
 
 		/*----------------- Libraries and Definitions ------------*/
-		
-#include "IR Sensor.h"
+#include "STD_Types.h"
+#include "DIO.h"	
+#include "IR.h"
 		/*--------------------- Global Variables ------------------*/
 
-static uint16 x;
+static uint8 IRreadVlue;
 		
 // pin will be High as any thing within the Detection Distance
 // The potentiometer R5 is used to adjust how sensitive the sensor is. 
@@ -18,9 +19,8 @@ static uint16 x;
 
 		/*------------------------- Function Definitions -----------------------------*/
 		
-uint8_t IR_Read(uint8 p)
+uint8 IR_ReadPinValue(void)
 {
-	 DIO_enuReadPinValue(p,x); 
-	return x;
-}
-
+	DIO_enuReadPinValue(IRPin , &IRreadVlue);
+	return !IRreadVlue;
+}	
