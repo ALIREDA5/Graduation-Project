@@ -10,8 +10,14 @@
 #define IR SENSOR_H_
 
 		/*--------------------- Functions Prototypes ---------------------------*/
-#define IRPin 0
+#define IR1Pin 0
+#define IR2Pin 1
+#define IR3Pin 26
+#define IR4Pin 27
 		
-uint8 IR_ReadPinValue(void);
+uint8 IR1_ReadPinValue(void);
+uint8 IR2_ReadPinValue(void);
+uint8 IR3_ReadPinValue(void);
+uint8 IR4_ReadPinValue(void);
 
 #endif /* IR SENSOR_H_ */
