@@ -1,14 +1,11 @@
 
 
+#ifndef ULTRASONIC_H
+#define ULTRASONIC_H
 
+#define UltraSonicPin 16
 
+void ULTRASONIC_Init(void);
+uint16 ULTRASONIC_GetDistance(void);
 
-
-void TIM1_SetICUValue(uint16 u16ICUValCpy)
-{
-	ICR1L = 0 ;
-	ICR1H = 0 ;
-
-	ICR1L |= u16ICUValCpy;
-	ICR1H |= u16ICUValCpy<< 8;
-}
+#endif /* ULTRASONIC_H_ */
