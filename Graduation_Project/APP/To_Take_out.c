@@ -40,6 +40,7 @@ void Take_out(uint8 pos)
 				StepperV_off();
 			}
 		}
+		break;
 		
 		case 2:
 		if (IR_Read(IR2)==1)
@@ -66,6 +67,7 @@ void Take_out(uint8 pos)
 				StepperV_off();
 			}
 		}
+		break;
 		
 		case 3:
 		if (IR_Read(IR3)==1)
@@ -92,6 +94,8 @@ void Take_out(uint8 pos)
 				StepperV_off();
 			}
 		}
+		break;
+		
 		default:
 		break;
 	}

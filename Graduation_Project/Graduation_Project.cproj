@@ -129,6 +129,12 @@
     <Compile Include="APP\frame_analsis.h">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="APP\main1.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="APP\main2.c">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="APP\Safety.c">
       <SubType>compile</SubType>
     </Compile>

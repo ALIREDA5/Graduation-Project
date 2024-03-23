@@ -23,8 +23,8 @@ typedef enum
 {
 	E_OK,
 	E_NOK,
-	PARM_POT_OF_RANGE,
-	PTR_IS_NULL
+	OUT_OF_RANG,
+	IS_NULL_POINTER
 }tenuErrorStatus;
 
 #endif   /*End Guard*/

@@ -7,7 +7,6 @@
 #define  F_CPU 8000000UL
 #include "../MCAL/DIO/DIO.h"
 #include "../MCAL/Timer1/TIM1.h"
-#include "../MCAL/timer0/TIM0.h"
 #include "../HAL/Servo.h"
 #include "../HAL/Buzzer.h"
 #include "../HAL/Stepper_V.h"
