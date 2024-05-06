@@ -14,7 +14,7 @@
 
 /*--------------------- Functions Prototypes ---------------------------*/
 
-uint8 Flame_Read(uint8 p);
+uint16 Flame_Read(uint8 u8FlamePin);
 
 
 

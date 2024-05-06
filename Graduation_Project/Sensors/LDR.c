@@ -11,13 +11,12 @@
 		
 		/*--------------------- Global Variables ------------------*/
 
-static uint8 x;
+static uint16 u16LDRValue;
 
 		/*--------------------------- Function to return the percentage of max light intensity ----------------------------------*/
 
-uint8 LDR_Read(uint8 cha)
+uint16 LDR_Read(uint8 u8LDRPin)
 {
-	x= ADC_u16ReadSync(cha);
-	x= ((uint16)x*100)/1024;
-	return x;  
+	 DIO_enuReadPinValue(u8LDRPin,&u16LDRValue);
+	 return u16LDRValue;
 }

@@ -15,7 +15,7 @@
 		
 		/*--------------------- Functions Prototypes ---------------------------*/
 
-uint8 LDR_Read(uint8 cha);
+uint16 LDR_Read(uint8 u8LDRPin);
 
 
 #endif /* LDR_H_ */
