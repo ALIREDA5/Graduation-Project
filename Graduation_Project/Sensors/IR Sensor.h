@@ -11,10 +11,10 @@
 
 		/*----------------- Libraries and Definitions ------------*/
 
-#include "../Lib/STD_Types.h"
+
 
 		/*--------------------- Functions Prototypes ---------------------------*/
 
-uint8 IR_Read(uint8 p);
+uint8 IR_Read(uint8 u8IRPin);
 
 #endif /* IR SENSOR_H_ */

@@ -7,6 +7,7 @@
 
 
 		/*----------------- Libraries and Definitions ------------*/
+#include "../Lib/STD_Types.h"
 #include "../MCAL/DIO/DIO.h"
 #include "Limit Switch.h"
 

@@ -1,11 +1,11 @@
 #include <avr/delay.h>
 #include "../Lib/STD_Types.h"
 
-#include "DIO.h"
+#include "../MCAL/DIO/DIO.h"
 #include "GIE.h"
 
-#include "TIM1.h"
-#include "US.h"
+#include "../MCAL/Timer1/TIM1.h"
+#include "Ultrasonic_Sensor.h"
 
 static volatile uint16 t1,t2,flag=0,u16NumofOVF=0;
 

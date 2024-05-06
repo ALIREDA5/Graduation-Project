@@ -6,7 +6,8 @@
  */ 
 
 		/*----------------- Libraries and Definitions ------------*/
-
+#include "../Lib/STD_Types.h"
+#include "../MCAL//DIO/DIO.h"
 #include "LDR.h"
 		
 		/*--------------------- Global Variables ------------------*/

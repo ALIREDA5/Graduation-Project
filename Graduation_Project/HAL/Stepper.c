@@ -6,9 +6,10 @@
  */ 
 	
 	/*----------------- Libraries and Definitions ------------*/
+#include "../Lib/STD_Types.h"
 #include "../MCAL/timer0/TIM0.h"
 #include "../MCAL/DIO/DIO.h"
-#include "Stepper_H.h"
+#include "Stepper.h"
 
 	/*----------------- Functions Definitions ------------*/
 
