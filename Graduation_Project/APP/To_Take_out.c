@@ -11,89 +11,44 @@
 #include "../Sensors/IR Sensor.h"
 #include "APP.h"
 
-void Take_out(uint8 pos)
+void Take_out(uint8 u8Pos)
 {
-	switch(pos)
+	switch(u8Pos)
 	{
 		case 1:
-		if (IR_Read(IR1)==1)
-		{
-			StepperV_off();
-			StepperH_ON(right);
-			if (LS_Read(LS3)==1)
-			{
-				StepperH_off();
-				StepperV_ON(up);
-			}
-			if (IR_Read(IR2)==1)
-			{
-				StepperV_off();
-				StepperH_ON(left);
-			}
-			if (LS_Read(LS2)==1)
-			{
-				StepperH_off();
-				StepperV_ON(down);
-			}
-			if (LS_Read(LS1)==1)
-			{
-				StepperV_off();
-			}
-		}
+		Stepper_ON(CW,IR1,V);
+		
+		Stepper_ON(CW,5,H);
+		
+		Stepper_ON(CW,IR2,V);
+		
+		Stepper_ON(CCW,LS3,H);
+		
+		Stepper_ON(CCW,LS1,V);
 		break;
 		
 		case 2:
-		if (IR_Read(IR2)==1)
-		{
-			StepperV_off();
-			StepperH_ON(right);
-			if (LS_Read(LS3)==1)
-			{
-				StepperH_off();
-				StepperV_ON(up);
-			}
-			if (IR_Read(IR2)==1)
-			{
-				StepperV_off();
-				StepperH_ON(left);
-			}
-			if (LS_Read(LS2)==1)
-			{
-				StepperH_off();
-				StepperV_ON(down);
-			}
-			if (LS_Read(LS1)==1)
-			{
-				StepperV_off();
-			}
-		}
+		Stepper_ON(CW,IR2,V);
+		
+		Stepper_ON(CW,5,H);
+		
+		Stepper_ON(CW,IR3,V);
+		
+		Stepper_ON(CCW,LS3,H);
+		
+		Stepper_ON(CCW,LS1,V);
 		break;
 		
 		case 3:
-		if (IR_Read(IR3)==1)
-		{
-			StepperV_off();
-			StepperH_ON(right);
-			if (LS_Read(LS3)==1)
-			{
-				StepperH_off();
-				StepperV_ON(up);
-			}
-			if (IR_Read(IR4)==1)
-			{
-				StepperV_off();
-				StepperH_ON(left);
-			}
-			if (LS_Read(LS2)==1)
-			{
-				StepperH_off();
-				StepperV_ON(down);
-			}
-			if (LS_Read(LS1)==1)
-			{
-				StepperV_off();
-			}
-		}
+		Stepper_ON(CW,IR3,V);
+		
+		Stepper_ON(CW,5,H);
+		
+		Stepper_ON(CW,LS2,V);
+		
+		Stepper_ON(CCW,LS3,H);
+		
+		Stepper_ON(CCW,LS1,V);
 		break;
 		
 		default:

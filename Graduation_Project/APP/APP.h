@@ -12,19 +12,15 @@
 #include "../Lib/STD_Types.h"
 #include "string.h"
 
-#define  Relay  0
-#define  start  1
-#define  IR1    2
-#define  IR2    3
-#define  IR3    4
-#define  IR4    5
-#define  LS1    6
-#define  LS2    7
-#define  LS3    8
+#define  IR1    24
+#define  IR2    25
+#define  IR3    26
+#define  LS1    0
+#define  LS2    1
+#define  LS3    2
 
-void Start(uint8 *state, uint8 *WC);
-void Park(uint8 pos);
-void Take_out(uint8 pos);
-void safety(void);
+void US_module();
+void Park(uint8 u8Pos);
+void Take_out(uint8 u8Pos);
 
 #endif /* TO_START_H_ */
