@@ -18,31 +18,57 @@ void tog()
 }
 
 	/*------------------------- Function Definition of stepper motor to turn only one turn -----------------------------*/
-void StepperH_ON(direction d)
+void Stepper_ON(uint8 u8MotorDirection,uint8 u8SensorPin,uint8 u8MovementDirection)
 {
-		// Full_Step:
-		DIO_enuSetPinValue(MS1,0);
-		DIO_enuSetPinValue(MS2,0);
-		DIO_enuSetPinValue(MS3,0);
+	uint8 u8SensorValue;
 	
-	switch(d)
+	switch(u8MotorDirection)
 	{
-		case right:
+		case 0:
 		DIO_enuSetPinValue(dir,1);
 		break;
-		case left:
+		case 1:
 		DIO_enuSetPinValue(dir,0);
 		break;
 	}
-	DIO_enuSetPinValue(enable,1);
-	
-	TIM0_vidInit();
-	// // connect step pin to OCR0
-	
+	switch(u8MovementDirection)
+	{
+		case 0:
+		DIO_enuSetPinValue(9,1);  // relay pin 1  --> Horizontal motor
+		DIO_enuSetPinValue(10,0);
+		case 1:
+		DIO_enuSetPinValue(9,0);
+		DIO_enuSetPinValue(10,1);	// relay pin 2 --> Vertical motor
+	}
+	DIO_enuSetPinValue(EN,0);
+	while(1)
+	{
+		DIO_enuSetPinValue(step,1);
+		_delay_us(150);
+		DIO_enuSetPinValue(step,0);
+		_delay_us(150);
+		DIO_enuReadPinValue(u8SensorPin,&u8SensorValue);
+		if (u8SensorValue==1)
+		{
+			DIO_enuSetPinValue(EN,1);
+			break;
+		}
+		else if (u8SensorValue==5)
+		{
+			for (uint32 i=0; i<106666;i++)
+			{
+				DIO_enuSetPinValue(step,1);
+				_delay_us(150);
+				DIO_enuSetPinValue(step,0);
+				_delay_us(150);
+			}
+			break;	
+		}
+	}
 }
 
 	/*------------------------- Function Definition Of stepper motor to turn it off-----------------------------*/
-void StepperH_off()
+void Stepper_off()
 {
-	DIO_enuSetPinValue(enable,0);
+	DIO_enuSetPinValue(EN,1);
 }

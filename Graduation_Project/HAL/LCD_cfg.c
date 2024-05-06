@@ -10,9 +10,9 @@ tstrLcdCfg  LCD_astrCfg[LCD_MAX_NUM]=
 				/* Pin connections */
 				{
 						/*RS  , RW   , EN*/
-						0    , 1    , 2  ,
+						2    , 3    , 4  ,
 						/*D0  , D1 , D2 , D3 ,D4 , D5 , D6 , D7*/
-						{ 24  , 25 , 26 , 27 ,28 , 29 , 30 , 31 }
+						{ 16  , 17 , 18 , 19 ,20 , 21 , 22 , 23 }
 				}
 				,
 				/*internal cfg */

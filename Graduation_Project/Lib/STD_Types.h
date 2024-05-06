@@ -19,6 +19,8 @@ typedef unsigned long int        uint32 ;
 typedef float                    float32;
 typedef double                   float64;
 
+#define  NULL_ptr   ((void*)0)
+
 typedef enum 
 {
 	E_OK,

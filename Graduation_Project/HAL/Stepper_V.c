@@ -9,12 +9,6 @@
 
 void StepperV_ON(directionV d)
 {
-	
-	// Full_Step:
-	DIO_enuSetPinValue(DMODE0,0);
-	DIO_enuSetPinValue(DMODE1,0);
-	DIO_enuSetPinValue(DMODE2,0);
-	
 	switch(d)
 	{
 		case up:
@@ -24,7 +18,7 @@ void StepperV_ON(directionV d)
 		DIO_enuSetPinValue(DIR,0);
 		break;
 	}
-	DIO_enuSetPinValue(ENAPLE,1);
+	DIO_enuSetPinValue(ENAPLE,0);
 	
 	TIM2_vidInit();
 	// connect step pin to OCR2 
@@ -32,5 +26,5 @@ void StepperV_ON(directionV d)
 
 void StepperV_off()
 {
-	DIO_enuSetPinValue(ENAPLE,0);
+	DIO_enuSetPinValue(ENAPLE,1);
 }

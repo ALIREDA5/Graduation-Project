@@ -12,7 +12,7 @@
 		/*----------------- Libraries and Definitions ------------*/
 
 
-#define  buzzer 14
+#define  buzzer 6
 		/*--------------------- Functions Prototypes ---------------------------*/
 
 void Buzzer_on();

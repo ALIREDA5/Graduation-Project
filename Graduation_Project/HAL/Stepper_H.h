@@ -11,24 +11,19 @@
 
 	/*----------------- Libraries and Definitions ------------*/
 
-#define enable 9
-#define step   10
-#define dir    11
-#define MS1    12
-#define MS2    13
-#define MS3    14
+#define EN 17
+#define step   18
+#define dir    16
 
-
-typedef enum
-{
-	right=0,
-	left
-}direction;
+#define CW   0
+#define CCW  1
+#define  H   0
+#define  V   1
 	
 	/*--------------------- Stepper Motor Functions Prototypes ---------------------------*/
 	
-void StepperH_ON(direction d);
-void StepperH_off();
+void Stepper_ON(uint8 u8MotorDirection,uint8 u8SensorPin,uint8 u8MovementDirection);
+void Stepper_off();
 
 
 

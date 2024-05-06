@@ -1,5 +1,5 @@
 #include <util/delay.h>
-#include "../lib/STD_Types.h"
+#include "../Lib/STD_Types.h"
 #include "../Lib/BIT_Math.h"
 
 #include "../MCAL/DIO/DIO.h"
