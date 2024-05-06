@@ -15,6 +15,6 @@
 
 /*--------------------- Functions Prototypes ---------------------------*/
 
-uint8 LS_Read(uint8 p);
+uint8 LS_Read(uint8 u8LSPin);
 
 #endif /* LIMIT SWITCH_H_ */

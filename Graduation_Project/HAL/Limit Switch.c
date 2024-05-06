@@ -13,15 +13,15 @@
 
 		/*--------------------- Global Variables ------------------*/
 
-static uint16 x;
+static uint16 u16LSValue;
 
 		
 // PIN connected to the limit switch should read 1 when switch is pressed in case of NO 
 // remember to connect 10k resistor between the pin and limit switch
 
 		/*------------------------- Function Definitions -----------------------------*/
-uint8 LS_Read(uint8 p)
+uint8 LS_Read(uint8 u8LSPin)
 {
-	 DIO_enuReadPinValue(p,x);
-	return x;
+	 DIO_enuReadPinValue(u8LSPin,&u16LSValue);
+	return u16LSValue;
 }
